@@ -4,26 +4,25 @@ isFullTime=1
 isPartTime=2
 empRatePerHr=20
 numWorkingDays=20
-
+workingHrPerMonth=100
 totalEmpHr=0
 totalWorkingDays=0
 
 function getWorkHrs(){
- while [[ $totalWorkingDays -le $numWorkingDays ]]
+ while [[ $totalWorkingDays -le $numWorkingDays || $totalEmpHr -le $workingHrPerMonth ]]
  do 
-	echo "while loop"
    empCheck=$(($RANDOM%3))
    case $empCheck in 
       $isFullTime)
-	 echo "Full Time present inside"
+	 echo "Full Time present"
  	empHrs=8
 	;;
       $isPartTime)
-	 echo "Part Time present inside"
+	 echo "Part Time present"
  	empHrs=4
 	;;
    *)
-	 echo "Absent inside"
+	 echo "Absent"
 	empHrs=0
 	;;
   esac
